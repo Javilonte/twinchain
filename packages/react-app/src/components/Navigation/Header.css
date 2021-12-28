@@ -1,0 +1,7 @@
+.logo {
+  float: left;
+}
+header{
+  background: rgb(187,187,187);
+  background: linear-gradient(90deg, rgba(187,187,187,1) 0%, rgba(181,181,181,1) 35%, rgba(137,138,138,1) 100%);
+}
