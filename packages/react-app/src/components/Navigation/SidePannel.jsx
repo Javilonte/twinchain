@@ -19,8 +19,8 @@ function SidePannel() {
 
     return (
         
-      <Sider width={250} className="site-layout-background" >
-      <Menu  mode="inline" defaultSelectedKeys={[activeItem]} style={{padding:24}}>
+      <Sider width={350} className="site-layout-background" >
+      <Menu  mode="inline" defaultSelectedKeys={[activeItem]} style={{padding:30}} className="site-layout-background">
         <Menu.Item key="1" icon={<DashboardOutlined />}
        >
          <Link to='/dashboard'>Tablero</Link> 

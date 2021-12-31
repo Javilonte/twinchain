@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 //import { Menu, Segment } from 'semantic-ui-react'
 import { Link, useHistory } from "react-router-dom";
-import logo from '../../images/logoInverted.png'
+import logo from '../../images/logoblanco.png'
 import {Account} from "..";
 import './Header.css'
 import 'antd/dist/antd.css';
@@ -66,7 +66,7 @@ export default function MainHeader({address,
         // </Segment>
 
 
-<Header className="header" style={{background:'#9b9b9b' }}>
+<Header className="header" >
      
 <div className="logo">
   <img src={logo}  alt="" srcset=""/>

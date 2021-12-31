@@ -57,7 +57,7 @@ export default function Profile(props) {
                           <h3>Correo</h3>
                         </Table.Cell>
                         <Table.Cell>
-                          <h3>name@domain.com</h3>
+                          <h3></h3>
                         </Table.Cell>
                       </Table.Row>
                       <Table.Row>

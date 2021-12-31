@@ -25,7 +25,9 @@ export default function layout(props) {
           <SidePannel />
 
           <Layout>
-            <Content className=" main-content">{props.children}</Content>
+          
+            <Content className="main-content">{props.children}</Content>
+            
           </Layout>
         </Layout>
       </Layout>
