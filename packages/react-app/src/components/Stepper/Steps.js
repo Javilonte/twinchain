@@ -70,7 +70,7 @@ const stepper = props => {
 
   useEffect(() => {
     if (props.writeContracts) {
-      props.writeContracts.Signchain.on("DocumentSigned", (author, oldValue, newValue, event) => {
+      props.writeContracts.Twinchain.on("DocumentSigned", (author, oldValue, newValue, event) => {
         console.log(event);
       });
       setSigner(props.userProvider.getSigner());

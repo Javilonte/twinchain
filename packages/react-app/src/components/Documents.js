@@ -26,10 +26,10 @@ export default function Documents(props) {
 
   useEffect(() => {
     if (props.writeContracts) {
-      props.writeContracts.Signchain.on("DocumentSigned", (author, oldValue, newValue, event) => {
+      props.writeContracts.Twinchain.on("DocumentSigned", (author, oldValue, newValue, event) => {
         getAllDoc();
       });
-      props.writeContracts.Signchain.on("DocumentNatarized", (author, oldValue, newValue, event) => {
+      props.writeContracts.Twinchain.on("DocumentNatarized", (author, oldValue, newValue, event) => {
         getAllDoc();
       });
       getAllDoc();

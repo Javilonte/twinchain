@@ -4,7 +4,7 @@ const { solidity } = require("ethereum-waffle");
 
 use(solidity);
 
-describe("Signchain", function () {
+describe("Twinchain", function () {
   let contractInstance, account1, account2;
 
 

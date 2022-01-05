@@ -6,7 +6,7 @@ import "./DocumentRegistry.sol";
 import "./SigningModule.sol";
 import "@nomiclabs/buidler/console.sol";
 
-contract Signchain is DocumentRegistry, SigningModule {
+contract Twinchain is DocumentRegistry, SigningModule {
     
     struct Notarize {
         address notaryAddress;
@@ -28,7 +28,7 @@ contract Signchain is DocumentRegistry, SigningModule {
     modifier isNotary() {
 
         //Check for the notary user type
-        require(storeUser[msg.sender].userType == UserType.notary, "User is not a notary");
+        require(storeUser[msg.sender].userType == UserType.notary, "El usuario no es notario");
         _;
     }
 
@@ -43,7 +43,7 @@ contract Signchain is DocumentRegistry, SigningModule {
         users);
 
         if(notary!= address(0)) {
-            require(msg.value == notaryFee, "Invalid Notary Fee");
+            require(msg.value == notaryFee, "Impuesto del notario invàlido");
             notarizedDocs[documentHash] = Notarize(notary, msg.value, false);
         }
     

@@ -6,7 +6,7 @@ use(solidity);
 
 const userType = {party: 0, notary: 1}
 
-describe("Signchain", function () {
+describe("Twinchain", function () {
   let contractInstance, account1, account2;
 
 

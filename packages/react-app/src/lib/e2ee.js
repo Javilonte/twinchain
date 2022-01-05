@@ -20,7 +20,7 @@ export const registerUser = async function(name, email, privateKey, userType, tx
     try {
         let publicKey = e2e.getPublicKey(privateKey)
         publicKey = publicKey.toString("hex")
-        const result = await tx(writeContracts.Signchain.registerUser(
+        const result = await tx(writeContracts.Twinchain.registerUser(
             name, email, publicKey, userType
         ))
         console.log("Register res:",result)
@@ -42,7 +42,7 @@ export const loginUser = async function(privateKey, tx, writeContracts){
     try {
         let publicKey = e2e.getPublicKey(privateKey)
         publicKey = publicKey.toString("hex")
-        const result = await tx(writeContracts.Signchain.updatePublicKey(
+        const result = await tx(writeContracts.Twinchain.updatePublicKey(
             publicKey
         ))
         console.log("Login:",result)
@@ -53,14 +53,14 @@ export const loginUser = async function(privateKey, tx, writeContracts){
 }
 
 export const getAllUsers = async function(loggedUser, tx, writeContracts){
-    const registeredUsers = await tx(writeContracts.Signchain.getAllUsers())
+    const registeredUsers = await tx(writeContracts.Twinchain.getAllUsers())
     const userType = {party: 0, notary: 1}
     let caller
     let userArray = []
     let notaryArray = []
     try {
         for (let i = 0; i < registeredUsers.length; i++){
-            const result = await tx(writeContracts.Signchain.storeUser(registeredUsers[i]))
+            const result = await tx(writeContracts.Twinchain.storeUser(registeredUsers[i]))
             const value = {
                 address: registeredUsers[i],
                 name: result.name,
@@ -215,7 +215,7 @@ export const uploadFile = async function(party, file, password, setSubmitting, t
 
         if (storageType==="Fleek"){
             storeFileFleek(fileKey, encryptedFile).then(()=>{
-                tx(writeContracts.Signchain.uploadDocument(
+                tx(writeContracts.Twinchain.uploadDocument(
                     fileHash,
                     fileKey,
                     encryptedKeys,
@@ -228,7 +228,7 @@ export const uploadFile = async function(party, file, password, setSubmitting, t
             })
         }else {
             storeFileAWS(fileKey, encryptedFile).then(() => {
-                tx(writeContracts.Signchain.signAndShareDocument(
+                tx(writeContracts.Twinchain.signAndShareDocument(
                     fileHash,
                     fileKey,
                     encryptedKeys,
@@ -248,11 +248,11 @@ export const uploadFile = async function(party, file, password, setSubmitting, t
 }
 
 export const getAllFile = async function(tx, writeContracts, address){
-    const documents = await tx(writeContracts.Signchain.getAllDocument())
+    const documents = await tx(writeContracts.Twinchain.getAllDocument())
     let result = []
     for (let i=0;i<documents.length;i++){
         const hash = documents[i];
-        const signDetails = await tx(writeContracts.Signchain.getSignedDocuments(hash))
+        const signDetails = await tx(writeContracts.Twinchain.getSignedDocuments(hash))
         const notaryInfo = await getNotaryInfo(hash, tx, writeContracts)
         let signStatus = true
         let partySigned = false
@@ -285,7 +285,7 @@ export const getAllFile = async function(tx, writeContracts, address){
 
 export const getFile = async function(tx, writeContracts, address, docHash){
 
-        const signDetails = await tx(writeContracts.Signchain.getSignedDocuments(docHash))
+        const signDetails = await tx(writeContracts.Twinchain.getSignedDocuments(docHash))
         if (!signDetails.signers.length)
           return false
         const notaryInfo = await getNotaryInfo(docHash, tx, writeContracts)
@@ -340,7 +340,7 @@ export const registerDoc = async function(party, fileHash, cipherKey, title, fil
         userAddress.push(party[i].address)
     }
 
-    tx(writeContracts.Signchain.signAndShareDocument(
+    tx(writeContracts.Twinchain.signAndShareDocument(
         fileHash,
         title,
         fileKey,
@@ -404,10 +404,10 @@ export const uploadDoc = async function(file, password, setSubmitting, storageTy
 
 export const downloadFile = async function (name, docHash,password, tx, writeContracts){
 
-    let cipherKey = await tx(writeContracts.Signchain.getCipherKey(docHash))
+    let cipherKey = await tx(writeContracts.Twinchain.getCipherKey(docHash))
     console.log(cipherKey)
     cipherKey = JSON.parse(cipherKey)
-    const document = await tx(writeContracts.Signchain.getDocument(docHash))
+    const document = await tx(writeContracts.Twinchain.getDocument(docHash))
     let encryptedKey = {
         iv: Buffer.from(cipherKey.iv,"hex"),
         ephemPublicKey: Buffer.from(cipherKey.ephemPublicKey,"hex"),
@@ -462,7 +462,7 @@ const signDocument = async function (fileHash, tx, writeContracts , signer){
 
     
     const selfAddress = await signer.getAddress()
-    const replayNonce = await tx(writeContracts.Signchain.replayNonce(selfAddress))
+    const replayNonce = await tx(writeContracts.Twinchain.replayNonce(selfAddress))
     
 
     const params = [
@@ -481,7 +481,7 @@ const signDocument = async function (fileHash, tx, writeContracts , signer){
 export const attachSignature = async function(fileHash, tx, writeContracts , signer){
 
     const signature = await signDocument(fileHash, tx, writeContracts , signer)
-    const signDetails = await tx(writeContracts.Signchain.signDocument(
+    const signDetails = await tx(writeContracts.Twinchain.signDocument(
         fileHash,
         signature[0],
         signature[1]
@@ -493,7 +493,7 @@ export const attachSignature = async function(fileHash, tx, writeContracts , sig
 export const notarizeDoc = async function(fileHash, tx, writeContracts , signer){
 
     const signature = await signDocument(fileHash, tx, writeContracts , signer)
-    const signDetails = await tx(writeContracts.Signchain.notarizeDocument(
+    const signDetails = await tx(writeContracts.Twinchain.notarizeDocument(
         fileHash,
         signature[0],
         signature[1]
@@ -504,7 +504,7 @@ export const notarizeDoc = async function(fileHash, tx, writeContracts , signer)
 
 export const getNotaryInfo = async function(fileHash, tx, writeContracts) {
    
-    const notaryDetails = await tx(writeContracts.Signchain.notarizedDocs(
+    const notaryDetails = await tx(writeContracts.Twinchain.notarizedDocs(
         fileHash))
     
     return notaryDetails

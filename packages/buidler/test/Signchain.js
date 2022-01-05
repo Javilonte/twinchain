@@ -6,18 +6,18 @@ use(solidity);
 
 const userType = {party: 0, notary: 1}
 
-describe("Signchain", function () {
+describe("Twinchain", function () {
   let contractInstance, account1, account2;
 
 
-  describe("SignchainFlow", function () {
+  describe("TwinchainFlow", function () {
 
     
-    it("Should deploy Signchain", async function () {
+    it("Should deploy Twinchain", async function () {
 
       [account1, account2, notary] = await ethers.getSigners();
   
-      const DocumentRegistry = await ethers.getContractFactory("Signchain");
+      const DocumentRegistry = await ethers.getContractFactory("Twinchain");
 
       contractInstance = await DocumentRegistry.deploy();
     });
