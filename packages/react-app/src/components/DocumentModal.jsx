@@ -10,15 +10,14 @@ const DocumentModal = ({open, onClose, onOpen}) => {
       onOpen={onOpen}
      
     >
-      <Modal.Header>Profile Picture</Modal.Header>
+      <Modal.Header>Imagen de perfil</Modal.Header>
       <Modal.Content image scrolling>
         <Image size='medium' src='/images/wireframe/image.png' wrapped />
 
         <Modal.Description>
           <p>
-            This is an example of expanded content that will cause the modal's
-            dimmer to scroll.
-          </p>
+            Este es un ejemplo de contenido expandido que causara que el modal haga scroll.
+            </p>
 
           <Image
             src='/images/wireframe/paragraph.png'

@@ -419,11 +419,11 @@ export const downloadFile = async function (name, docHash,password, tx, writeCon
     const decryptedKey = await e2e.decryptKey(privateKey[0],encryptedKey)
     const documentHash = document.documentHash
     let documentLocation = document.documentLocation
-    console.log("Document Location:",documentLocation)
+    console.log("Ubicacion del documento: ",documentLocation)
     const fileSplit= documentLocation.split(".")
     const fileFormat = fileSplit[fileSplit.length - 1]
     const storageType = fileSplit[fileSplit.length - 2]
-    console.log("download storage type:",storageType)
+    console.log("Tipo de almacenamiento:",storageType)
 
     return new Promise((resolve)=>{
         if (storageType==="AWS") {
@@ -445,7 +445,7 @@ export const downloadFile = async function (name, docHash,password, tx, writeCon
             })
         }else {
             documentLocation = documentLocation.slice(0, documentLocation.lastIndexOf("."))
-            console.log("document new location:",documentLocation)
+            console.log("Nueva ubicacion de documento: ",documentLocation)
             getFileSlate(documentLocation).then((encryptedFile) => {
                 console.log("Encrypted Slate:",encryptedFile)
                 e2e.decryptFile(encryptedFile, decryptedKey).then((decryptedFile) => {

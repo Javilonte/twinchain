@@ -58,7 +58,7 @@ export default function Share(props) {
       signer,
       storageType,
     );
-    console.log("File uploaded!", receipt);
+    console.log("Archivo subido!", receipt);
   };
 
   return (

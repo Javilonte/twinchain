@@ -31,7 +31,7 @@ export default function useCustomContractLoader(provider, contractName, address)
 
           setContract(customContract);
         } catch (e) {
-          console.log("ERROR LOADING CONTRACTS!!", e);
+          console.log("Error cargando contratos!!", e);
         }
       }
     }

@@ -44,7 +44,7 @@ export default function useContractLoader(providerOrSigner) {
           }, {});
           setContracts(newContracts);
         } catch (e) {
-          console.log("ERROR LOADING CONTRACTS!!", e);
+          console.log("Error cargando contratos", e);
         }
       }
     }

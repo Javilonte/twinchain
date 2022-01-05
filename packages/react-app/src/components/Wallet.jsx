@@ -81,12 +81,12 @@ export default function Wallet(props) {
           setQr("");
         }}
       >
-        <QrcodeOutlined /> Hide
+        <QrcodeOutlined /> Esconder
       </Button>
     );
     privateKeyButton = (
      <Button key="hide" onClick={()=>{setPK(selectedAddress);setQr("")}}>
-       <KeyOutlined /> Private Key
+       <KeyOutlined /> Llave privada
      </Button>
    )
  }else if(pk){
@@ -103,7 +103,7 @@ export default function Wallet(props) {
    }else{
      display = (
        <div>
-         <b>Private Key:</b>
+         <b>Llave privada:</b>
 
          <div>
           <Text copyable>{pk}</Text>
@@ -111,7 +111,7 @@ export default function Wallet(props) {
 
           <hr/>
 
-         <i>Point your camera phone at qr code to open in <a target="_blank" href={"https://xdai.io/"+pk}>burner wallet</a>:</i>
+         <i> Apunta tu camara a un codigo QR para abrir en <a target="_blank" href={"https://xdai.io/"+pk}>una Wallet</a>:</i>
          <QR value={"https://xdai.io/"+pk} size={"450"} level={"H"} includeMargin={true} renderAs={"svg"} imageSettings={{excavate:false}}/>
 
          <Paragraph style={{fontSize:"16"}} copyable>{"https://xdai.io/"+pk}</Paragraph>
@@ -123,12 +123,12 @@ export default function Wallet(props) {
 
    receiveButton = (
      <Button key="receive" onClick={()=>{setQr(selectedAddress);setPK("")}}>
-       <QrcodeOutlined /> Receive
+       <QrcodeOutlined /> Recibir
      </Button>
    )
    privateKeyButton = (
      <Button key="hide" onClick={()=>{setPK("");setQr("")}}>
-       <KeyOutlined /> Hide
+       <KeyOutlined /> Esconder
      </Button>
    )
   } else {
@@ -166,12 +166,12 @@ export default function Wallet(props) {
           setPK("");
         }}
       >
-        <QrcodeOutlined /> Receive
+        <QrcodeOutlined /> Recibir
       </Button>
     );
     privateKeyButton = (
       <Button key="hide" onClick={()=>{setPK(selectedAddress);setQr("")}}>
-        <KeyOutlined /> Private Key
+        <KeyOutlined /> Llave privada
       </Button>
     );
   }
@@ -225,7 +225,7 @@ export default function Wallet(props) {
               setQr();
             }}
           >
-            <SendOutlined /> Send
+            <SendOutlined /> Enviar
           </Button>,
         ]}
       >
